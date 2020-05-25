@@ -1,0 +1,79 @@
+package ${package}.service.impl;
+
+import ${package}.model.${className};
+import ${package}.service.${className}Service;
+import ${package}.dao.${className}Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * ${comments}ServiceImpl
+ * @author ${author}
+ */
+@Service
+public class ${className}ServiceImpl implements ${className}Service {
+
+    @Autowired
+    private ${className}Mapper ${classname}Dao;
+
+    /**
+     * 查询${comments}列表
+     */
+    @Override
+    public List<${className}> list(Map<String, Object> map) {
+        return ${classname}Dao.list(map);
+    }
+    
+    /**
+     * 数量${comments}
+     */
+    @Override
+    public int listcount(Map<String, Object> map) {
+        return ${classname}Dao.listcount(map);
+    }
+
+
+    /**
+     * 通过${pk.columnName}查询单个${comments}
+     */
+    @Override
+    public ${className} findById(${pk.attrType} ${pk.attrname}) {
+        return ${classname}Dao.findById(${pk.attrname});
+    }
+
+    /**
+     * 通过map查询单个${comments}
+     */
+    @Override
+    public ${className} findByMap(Map<String, Object> map) {
+        return ${classname}Dao.findByMap(map);
+    }
+
+    /**
+     * 新增${comments}
+     */
+    @Override
+    public int save(${className} ${classname}) {
+        return ${classname}Dao.save(${classname});
+    }
+
+    /**
+     * 修改${comments}
+     */
+    @Override
+    public int update(${className} ${classname}) {
+        return ${classname}Dao.update(${classname});
+    }
+
+    /**
+     * 删除${comments}
+     */
+    @Override
+    public int deleteById(${pk.attrType} ${pk.attrname}) {
+        return ${classname}Dao.deleteById(${pk.attrname});
+    }
+
+}

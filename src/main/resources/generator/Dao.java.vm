@@ -1,0 +1,50 @@
+package ${package}.dao;
+
+import ${package}.model.${className};
+
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * ${comments}DAO
+ * @author ${author}
+ */
+public interface ${className}Mapper {
+
+    /**
+     * 通过${pk.columnName}查询单个${comments}
+     */
+    ${className} findById(${pk.attrType} ${pk.attrname});
+
+    /**
+     * 通过map查询单个${comments}
+     */
+    ${className} findByMap(Map<String, Object> map);
+
+    /**
+     * 查询${comments}列表
+     */
+    List<${className}> list(Map<String, Object> map);
+
+    /**
+     * 新增${comments}
+     */
+    int save(${className} ${classname});
+
+    /**
+     * 修改${comments}
+     */
+    int update(${className} ${classname});
+
+    /**
+     * 删除${comments}
+     */
+    int deleteById(${pk.attrType} ${pk.columnName});
+
+	/**
+     * 通过map查询单个${comments}
+     */
+    int listcount(Map<String, Object> map);
+
+}

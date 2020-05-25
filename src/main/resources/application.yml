@@ -1,0 +1,29 @@
+spring:
+  # database
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://49.235.70.156:3306/harbinfair?serverTimezone=Asia/Shanghai&useSSL=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+    password: root
+    username: 8219@Abcd
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/static
+#port
+server:
+  port: 9008
+# mybatis
+mybatis:
+  mapper-locations: classpath:/mapping/*.xml
+  type-aliases-package: com.model, com.vo
+  configuration:
+    #把下划线转为驼峰
+    map-underscore-to-camel-case: true
+    #开启二级缓存
+    cache-enabled: true
+pagehelper:
+  helper-dialect: mysql
+  params:
+    count: countSql
+  reasonable: false
+  support-methods-arguments: true

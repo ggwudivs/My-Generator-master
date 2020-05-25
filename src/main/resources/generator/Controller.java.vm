@@ -1,0 +1,100 @@
+package ${package}.controller;
+
+import ${package}.model.${className};
+import ${package}.service.${className}Service;
+import cn.org.chtf.card.manage.system.service.SysSessionService;
+import cn.org.chtf.card.common.utils.ResultVOUtil;
+import cn.org.chtf.card.common.vo.ResultVO;
+import cn.org.chtf.card.common.utils.R;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+import java.util.List;
+
+/**
+ * ${comments}Controller
+ * @author ${author}
+ */
+@RestController
+@RequestMapping("/manage/${platformUrl}/${classname}")
+public class ${className}Controller {
+
+    @Autowired
+    private ${className}Service ${classname}Service;
+    
+    @Autowired
+    private SysSessionService sysSessionService;
+    
+    @RequestMapping("/list")
+	public R list(@RequestParam Map<String,Object> map,HttpServletRequest request){
+		try {
+			String strSessionid = sysSessionService.getSessionID(request);
+			map.put("session",strSessionid);
+			map = ResultVOUtil.TiaoZhengFenYe(map);
+			List<${className}> list = ${classname}Service.list(map);			
+			int a = ${classname}Service.listcount(map);
+			return R.ok().put("data", list).put("code", 200).put("msg", "查询成功！").put("total", a);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return R.error().put("code", 201).put("msg", "查询失败！");
+		}
+	} 
+    
+
+    /**
+     * 通过${pk.columnName}查询单个${comments}
+     */
+    @GetMapping("/findById")
+    public ResultVO findById(@RequestParam(value = "${pk.columnName}") ${pk.attrType} ${pk.columnName}) {
+        ${className} ${classname} =${classname}Service.findById(${pk.columnName});
+        return ResultVOUtil.success(${classname});
+    }   
+
+    /**
+     * 添加${comments}
+     */
+    @PostMapping("/save")
+    public ResultVO save(@RequestBody ${className} ${classname},HttpServletRequest request) {
+    	String strSessionid = sysSessionService.getSessionID(request);
+    	${classname}.setSession(strSessionid);
+        ${classname}Service.save(${classname});
+        return ResultVOUtil.success();
+    }
+
+    /**
+     * 修改${comments}
+     */
+    @PutMapping("/update")
+    public ResultVO update(@RequestBody ${className} ${classname}) {
+        ${classname}Service.update(${classname});
+        return ResultVOUtil.success();
+    }
+
+    /**
+     * 删除${comments}
+     */
+    @GetMapping("/deleteById")
+    public ResultVO deleteById(@RequestParam(value = "${pk.columnName}") ${pk.attrType} ${pk.columnName}) {
+        ${classname}Service.deleteById(${pk.columnName});
+        return ResultVOUtil.success();
+
+    }
+    
+    /**
+     * 批量删除${comments}
+     */
+    @GetMapping("/delAll")
+    public ResultVO delAll(@RequestParam(value = "isStr") String isStr){
+    	if (isStr!=null &&!isStr.equals("")) {
+    		String[] ids = isStr.split(",");
+    		for (String id : ids) {
+    			if(id!=null &&!id.equals("")){
+    				${classname}Service.deleteById(Integer.valueOf(id));
+    			}
+    		}
+    	}
+    	return ResultVOUtil.success();
+    }
+
+}

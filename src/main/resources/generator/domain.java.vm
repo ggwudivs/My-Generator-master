@@ -1,0 +1,46 @@
+package ${package}.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.sql.Timestamp;
+import lombok.Data;
+
+/**
+ * ${comments}
+ * @author ${author}
+ */
+@Data
+public class ${className} implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+    
+    /**
+     * 届次
+     */
+    private String session;
+
+#foreach ($column in $columns)
+    /**
+     * $column.comments
+     */
+    private $column.attrType $column.attrname;
+
+#end
+
+###foreach ($column in $columns)
+##	/**
+##	 * 设置：${column.comments}
+##	 */
+##	public void set${column.attrName}($column.attrType $column.attrname) {
+##		this.$column.attrname = $column.attrname;
+##	}
+##	/**
+##	 * 获取：${column.comments}
+##	 */
+##	public $column.attrType get${column.attrName}() {
+##		return $column.attrname;
+##	}
+##
+###end
+}

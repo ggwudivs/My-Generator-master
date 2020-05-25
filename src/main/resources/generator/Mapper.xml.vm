@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${package}.dao.${className}Mapper">
+
+    <select id="findById" resultType="${package}.model.${className}">
+        select
+#foreach($column in $columns)
+			a.$column.columnName as $column.attrname#if($velocityCount != $columns.size()),#end
+
+#end
+        from ${tableName} as a
+        where a.${pk.columnName} = #{$pk.columnName}
+    </select>
+
+    <select id="findByMap" resultType="${package}.model.${className}">
+        select
+#foreach($column in $columns)
+			a.$column.columnName as $column.attrname#if($velocityCount != $columns.size()),#end
+
+#end
+        from ${tableName} as a
+        <where>
+#foreach($column in $columns)
+			<if test="$column.attrname != null and $column.attrname.trim() != ''">
+				and a.$column.columnName = #{$column.attrname}
+			</if>
+#end
+        </where>
+    </select>
+
+    <select id="list" resultType="${package}.model.${className}">
+        select
+#foreach($column in $columns)
+			a.$column.columnName as $column.attrname#if($velocityCount != $columns.size()),#end
+
+#end
+        from ${tableName} as a
+        <where>
+#foreach($column in $columns)
+            <if test="$column.attrname != null and $column.attrname.trim() != ''">
+                and a.$column.columnName = #{$column.attrname}
+            </if>
+#end
+        </where>
+        order by a.id desc	
+		limit #{index}, #{size}
+    </select>
+    
+    <select id="listcount" resultType="int">
+		SELECT count(id) FROM ${tableName} a
+		<where>
+#foreach($column in $columns)
+            <if test="$column.attrname != null and $column.attrname.trim() != ''">
+                and a.$column.columnName = #{$column.attrname}
+            </if>
+#end
+        </where>
+	</select>
+
+    <insert id="save" parameterType="${package}.model.${className}"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
+        insert into ${tableName}(
+        	<trim suffixOverrides=",">
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
+                <if test="$column.attrname != null">`$column.columnName`#if($velocityCount != $columns.size()),#end</if>
+#end
+#end
+			</trim>
+		) values (
+        	<trim suffixOverrides=",">
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
+                <if test="$column.attrname != null">#{$column.attrname}#if($velocityCount != $columns.size()),#end</if>
+#end
+#end
+			</trim>
+		)
+    </insert>
+
+    <update id="update" parameterType="${package}.model.${className}">
+        update ${tableName}
+        <set>
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName)
+			<if test="$column.attrname != null">`$column.columnName` = #{$column.attrname}#if($velocityCount != $columns.size()),#end</if>
+#end
+#end
+        </set>
+        where ${pk.columnName} = #{${pk.attrname}}
+    </update>
+
+    <delete id="deleteById">
+        delete from ${tableName} where ${pk.columnName} = #{$pk.columnName}
+    </delete>
+</mapper>
