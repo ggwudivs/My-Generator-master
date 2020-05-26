@@ -43,7 +43,7 @@ public class GeneratorCode {
     //    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/" + JDBC_DATABASE;
 //    private static final String JDBC_USERNAME = "root";
 //    private static final String JDBC_PASSWORD = "root";
-    private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+    private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
     //自动去除表前缀
     public static String AUTO_REMOVE_PRE = "true";
     
@@ -63,7 +63,7 @@ public class GeneratorCode {
             genModelAndMapper(platformUrl, tableName); // 生成model和mapper
             genService(platformUrl, tableName); // 生成service
             genController(platformUrl, tableName); // 生成controller
-//            genHtml(platformUrl, tableName);// 生成xx管理页面            
+            genHtml(platformUrl, tableName);// 生成xx管理页面            
         }
         System.out.println();
         System.out.println(strSQL);

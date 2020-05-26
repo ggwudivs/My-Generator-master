@@ -13,74 +13,66 @@
 </head>
 <body class="gray-bg">
     <div class="modal inmodal" id="friendlink-model">
-			<div class="modal-content animated bounceInUp" id="vmView${className}">
-				<div class="ibox-content">
-					<fieldset class="layui-elem-field layui-field-title" style="border-top:0px">
-						<form class="layui-form layui-form-pane" action="">
-				            #foreach($column in $columns)
-				                #if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
-				                #if($column.attrname != 'createTime' && $column.attrname != 'updateTime' && $column.attrname != 'addtime')
-				                    <div class="layui-form-item">
-				                        <label class="layui-form-label" for="$column.attrname">
-				                            $column.comments
-				                        </label>
-				                        <div class="layui-input-block">
-				                            <div class="layui-input-inline layui-show-xs-block">
-				                                <input autocomplete="off" class="layui-input" id="$column.attrname" name="$column.attrname" readonly type="text" v-model="${classname}.$column.attrname">
-				                            </div>
-				                        </div>
-				                    </div>
-				                #end
-				                #end
-				            #end
-            <div class="layui-form-item">  
-            <div class="layui-input-block">	              
-                <button class="layui-btn layui-btn-primary" onclick="xadmin.close();" style="width: 100px;">
-                    返回
-                </button>
-                </div>
-            </div>
-        </form>
- </fieldset>
-				</div>
+		<div class="modal-content animated bounceInUp" id="vmView${className}">
+			<div class="ibox-content">
+				<fieldset class="layui-elem-field layui-field-title" style="border-top:0px">
+					<form class="layui-form layui-form-pane" action="">
+#foreach($column in $columns)
+#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
+#if($column.attrname != 'createTime' && $column.attrname != 'updateTime' && $column.attrname != 'addtime')
+	                    <div class="layui-form-item">
+	                        <label class="layui-form-label" for="$column.attrname">$column.comments</label>
+	                        <div class="layui-input-block">
+	                            <div class="layui-input-inline layui-show-xs-block">
+	                                <input autocomplete="off" class="layui-input" id="$column.attrname" name="$column.attrname" readonly type="text" v-model="${classname}.$column.attrname">
+	                            </div>
+	                        </div>
+	                    </div>
+#end
+#end
+#end
+			            <div class="layui-form-item">  
+			            	<div class="layui-input-block">	              
+                				<button class="layui-btn layui-btn-primary" onclick="xadmin.close();" style="width: 100px;">返回</button>
+			                </div>
+			            </div>
+			        </form>
+			 	</fieldset>
 			</div>
 		</div>
-<script charset="utf-8" src="/manage/js/jquery.min.js" type="text/javascript"></script>
-<script charset="utf-8" src="/manage/layui/layui.js" type="text/javascript"></script>
-<script charset="utf-8" src="/manage/js/xadmin.js" type="text/javascript"></script>
-<script charset="utf-8" src="/manage/js/vue.js" type="text/javascript"></script>
-<script src="/manage/js/bootstrap.min.js?v=3.3.6"></script>
-<script charset="UTF-8" type="text/javascript">
-    var view${className}Id = sessionStorage.getItem("view${className}Id");
-
-    vm = new Vue({
-    el: "#vmView${className}",
-    data: {
-    ${classname}: {}
-    },
-    methods: {},
-    created: function () {
-        var _this = this;
-        $.ajax({
-            url: "/manage/${platformUrl}/${classname}/findById",
-            data: {
-                "${pk.columnName}": view${className}Id
-            },
-            dataType: "json",
-            type: "get",
-            success: function (result) {
-                if (result.code === 200) {
-                    _this.${classname} = result.data;
-                } else {
-                    layer.alert("获取修改${comments}信息失败！");
-                }
-            }
-        });
-
-    }
-    });
-
-    layui.use(['form', 'layer', 'laydate'], function () {});
-</script>
+	</div>
+	<script charset="utf-8" src="/manage/js/jquery.min.js" type="text/javascript"></script>
+	<script charset="utf-8" src="/manage/layui/layui.js" type="text/javascript"></script>
+	<script charset="utf-8" src="/manage/js/xadmin.js" type="text/javascript"></script>
+	<script charset="utf-8" src="/manage/js/vue.js" type="text/javascript"></script>
+	<script src="/manage/js/bootstrap.min.js?v=3.3.6"></script>
+	<script charset="UTF-8" type="text/javascript">
+    	var view${className}Id = sessionStorage.getItem("view${className}Id");
+    	vm = new Vue({
+		    el: "#vmView${className}",
+		    data: {
+		    	${classname}: {}
+		    },
+		    methods: {},
+		    created: function () {
+		        var _this = this;
+		        $.ajax({
+		            url: "/manage/${platformUrl}/${classname}/findById",
+		            data: {
+		                "${pk.columnName}": view${className}Id
+		            },
+		            dataType: "json",
+		            type: "get",
+		            success: function (result) {
+		                if (result.code === 1) {
+		                    _this.${classname} = result.data;
+		                } else {
+		                    layer.alert("获取修改${comments}信息失败！");
+		                }
+		            }
+		        });
+			}
+		});
+	</script>
 </body>
 </html>
