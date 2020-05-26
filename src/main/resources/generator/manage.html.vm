@@ -43,6 +43,7 @@
                 <input name="keyword" class="form-control input-outline" type="text" placeholder="请输入用户姓名" id="keyword">
               </div>
             </div>
+            <table id="test" lay-filter="test"></table>
         </div>
       </div>
     </div>    
@@ -107,8 +108,7 @@ function reloadTableData() {
 		method : 'get',
 		url : '/manage/${platformUrl}/${classname}/list',
 		where : {
-			name : $("#keywordname").val(),
-			code : $("#keywordcode").val()
+			name : $("#keyword").val(),
 		}
 	});
 }
