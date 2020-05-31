@@ -51,7 +51,7 @@ public class GeneratorCode {
 
     public static void main(String[] args) throws Exception {
     	//Exhibitors
-        genCodeByTableNames("system", "sys_country_area");
+        genCodeByTableNames("system", "sys_company_type");
         
         //genCodeByTableNames("Exhibitors", "ebs_guestbexhibition", "ebs_showroom","ebs_showroomtype",
         //		"ebs_vehiclecard","ebs_tradinggroup");

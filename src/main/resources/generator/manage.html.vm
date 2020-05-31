@@ -31,9 +31,9 @@
             <div class="fixed-table-toolbar" style="height:50px;">
               <div class="bars pull-left">
                 <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
-                  <button type="button" class="btn btn-outline btn-default" onclick="xadmin.open('添加${comments}','${classname}Add.html')" title="新建" id="addUser"> <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> </button>
-                  <button type="button" class="btn btn-outline btn-default" title="批量删除" id="delAll" onclick="delall()"> <i class="glyphicon glyphicon-trash" aria-hidden="true"></i> </button>
-                  <button class="btn btn-default btn-outline" type="button" name="refresh" onclick="location.reload()" title="刷新" id="refresh"> <i class="glyphicon glyphicon-repeat"></i> </button>
+                  <button type="button" class="btn btn-outline btn-default" title="新建" onclick="xadmin.open('添加${comments}','${classname}Add.html')" id="addUser"> <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> </button>
+                  <button type="button" class="btn btn-outline btn-default" title="批量删除" onclick="delall()" id="delAll"> <i class="glyphicon glyphicon-trash" aria-hidden="true"></i> </button>
+                  <button type="button" class="btn btn-default btn-outline" title="刷新" onclick="location.reload()" id="refresh" name="refresh"> <i class="glyphicon glyphicon-repeat"></i> </button>
                 </div>
               </div>
               <div class="columns columns-right btn-group pull-right">
@@ -69,6 +69,7 @@ layui.use('table', function(){
 			statusCode: 1 
 		}
 		,page: true
+		,even: true //开启隔行背景
 		,cols: [[ //表头
 			{type:'checkbox'}
 			,{type:'numbers',title:'序号'}
@@ -78,15 +79,7 @@ layui.use('table', function(){
 #end
 #end		  
 			,{field:'status', title:'操作', toolbar: '#barDemo'}
-		]],
-		done: function (res, curr, count) {// 表格渲染完成之后的回调	
-			var that = this.elem.next();
-	        if (res.hasOwnProperty("data")) {
-	            res.data.forEach(function (item, index) {
-	                if (index % 2 != 0) that.find(".layui-table-box tbody tr[data-index='" + index + "']").css("background-color", "#F5F5F5");
-	            });
-	        }
-		}
+		]]
 	});	
 	//监听工具条
 	table.on('tool(test)', function(obj){

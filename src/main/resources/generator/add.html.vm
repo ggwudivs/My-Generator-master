@@ -19,7 +19,7 @@
 					<form class="layui-form layui-form-pane" action="">
 #foreach($column in $columns)
 #if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
-#if($column.attrname != 'createTime' && $column.attrname != 'updateTime' && $column.attrname != 'addtime')
+#if($column.attrname != 'createTime' && $column.attrname != 'updateTime' && $column.attrname != 'addTime' && $column.attrname != 'useFlag')
                         <div class="layui-form-item">
                             <label class="layui-form-label" for="$column.attrname">$column.comments</label>
                             <div class="layui-input-block">
@@ -30,7 +30,7 @@
 #if($column.dataType == 'varchar')
                                     <input class="layui-input" autocomplete="off" id="$column.attrname" name="$column.attrname" type="text">
 #end
-#if($column.dataType == 'int' )
+#if($column.dataType == 'int')
 #if($column.attrname == 'status' )
                                 	<input type='radio' name='$column.attrname' value='1' title='启用'>
 									<input type='radio' name='$column.attrname' value='0' checked title='禁用'>
@@ -72,7 +72,7 @@
             form.on('submit(add)', function (data) {
                 //发异步，把数据提交给java
                 $.ajax({
-                    url: "/${classname}/save",
+                    url: "/manage/${platformUrl}/${classname}/save",
                     data: JSON.stringify(data.field),
                     dataType: "json",
                     type: "post",
