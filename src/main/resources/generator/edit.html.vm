@@ -19,7 +19,7 @@
 					<form class="layui-form layui-form-pane" action="">
 #foreach($column in $columns)
 #if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
-#if($column.attrname != 'createTime' && $column.attrname != 'updateTime' && $column.attrname != 'addtime')
+#if($column.attrname != 'createTime' && $column.attrname != 'updateTime' && $column.attrname != 'addTime' && $column.attrname != 'useFlag')
                         <div class="layui-form-item">
                             <label class="layui-form-label" for="$column.attrname">$column.comments</label>
                             <div class="layui-input-block">
@@ -76,7 +76,7 @@
 	        created: function () {
 	            var _this = this;
 	            $.ajax({
-	                url: "/manage/${platformUrl}/${classname}/edit",
+	                url: "/manage/${platformUrl}/${classname}/findById",
 	                data: {
 	                    "${pk.columnName}": edit${className}Id
 	                },

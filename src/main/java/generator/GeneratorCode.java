@@ -51,7 +51,7 @@ public class GeneratorCode {
 
     public static void main(String[] args) throws Exception {
     	//Exhibitors
-        genCodeByTableNames("system", "sys_company_type");
+        genCodeByTableNames("Exhibitors", "ebs_booth");
         
         //genCodeByTableNames("Exhibitors", "ebs_guestbexhibition", "ebs_showroom","ebs_showroomtype",
         //		"ebs_vehiclecard","ebs_tradinggroup");
@@ -243,7 +243,9 @@ public class GeneratorCode {
         strSQL+="INSERT INTO system_function (function_name, function_parentid, function_url, function_order, language, function_is_interface, function_ico, function_menu_id)\n";
         strSQL+="SELECT '查询',@parentId,'"+platformUrl+"/"+tableDO.getClassname()+"/list',1,'CN',1, '', -1;\n";
         strSQL+="INSERT INTO system_function (function_name, function_parentid, function_url, function_order, language, function_is_interface, function_ico, function_menu_id)\n";
-        strSQL+="SELECT '删除',@parentId,'"+platformUrl+"/"+tableDO.getClassname()+"/delAll',1,'CN',1, '', -1;\n";
+        strSQL+="SELECT '批量删除',@parentId,'"+platformUrl+"/"+tableDO.getClassname()+"/delAll',1,'CN',1, '', -1;\n";
+        strSQL+="INSERT INTO system_function (function_name, function_parentid, function_url, function_order, language, function_is_interface, function_ico, function_menu_id)\n";
+        strSQL+="SELECT '删除',@parentId,'"+platformUrl+"/"+tableDO.getClassname()+"/deleteById',1,'CN',1, '', -1;\n";
         strSQL+="INSERT INTO system_function (function_name, function_parentid, function_url, function_order, language, function_is_interface, function_ico, function_menu_id)\n";
         strSQL+="SELECT '编辑',@parentId,'"+platformUrl+"/"+tableDO.getClassname()+"/update',1,'CN',1, '', -1;\n";
         strSQL+="INSERT INTO system_function (function_name, function_parentid, function_url, function_order, language, function_is_interface, function_ico, function_menu_id)\n";

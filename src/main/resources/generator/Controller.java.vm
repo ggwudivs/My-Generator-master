@@ -33,7 +33,7 @@ public class ${className}Controller {
 			String strSessionid = sysSessionService.getSessionID(request);
 			map.put("session",strSessionid);
 			map = ResultVOUtil.TiaoZhengFenYe(map);
-			List<${className}> list = ${classname}Service.list(map);			
+			List<${className}> list = ${classname}Service.list(map);
 			int count = ${classname}Service.listcount(map);
 			return R.ok().put("data", list).put("code", WConst.SUCCESS).put("msg", WConst.QUERYSUCCESS).put("count", count);
 		} catch (Exception e) {
