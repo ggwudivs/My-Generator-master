@@ -8,15 +8,15 @@
     <meta content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" name="viewport"/>
     <link rel="stylesheet" href="/manage/css/xadmin.css">
     <link rel="stylesheet" href="/manage/css/font.css">
-    <link href="/manage/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-	<link href="/manage/css/font-awesome.css?v=4.4.0" rel="stylesheet">
-	<link href="/manage/css/animate.css" rel="stylesheet">
-	<link href="/manage/css/style.css?v=4.1.0" rel="stylesheet">
-	<link href="/manage/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
-    <script charset="utf-8" src="/manage/js/jquery.min.js" type="text/javascript"></script>
-    <script charset="utf-8" src="/manage/layui/layui.js" type="text/javascript"></script>
-    <script charset="utf-8" src="/manage/js/xadmin.js" type="text/javascript"></script>
-    <script charset="utf-8" src="/manage/js/vue.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/manage/css/bootstrap.min.css?v=3.3.6">
+	<link rel="stylesheet" href="/manage/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+	<link rel="stylesheet" href="/manage/css/animate.css" rel="stylesheet">
+	<link rel="stylesheet" href="/manage/css/style.css?v=4.1.0" rel="stylesheet">
+	<link rel="stylesheet" href="/manage/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <script charset="utf-8" type="text/javascript" src="/manage/js/jquery.min.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/manage/js/xadmin.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/manage/js/vue.js"></script>
+    <script charset="utf-8" type="text/javascript" src="/manage/layui/layui.js"></script>
 </head>
 <body>
 <div class="wrapper wrapper-content  animated fadeInRight">
